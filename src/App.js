@@ -1,25 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class BooksApp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showSearchPage: false,
+            searching: false,
+            booksList: {
+                "currentlyReading": [],
+                "wantToRead": [],
+                "read": []
+            }
+        }
+    }
+
+    toggleScreen = () => {
+        this.setState(prevState => ({showSearchPage: !prevState.showSearchPage}))
+    }
+    render() {
+        return(
+            <div>
+                This is the app home page!
+            </div>
+        )
+    }
+
+
 }
 
-export default App;
+export default BooksApp;
