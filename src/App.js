@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react'
+import SearchPage from "./SearchPage";
+import HomeDisplay from "./HomeDisplay";
 
 class BooksApp extends React.Component {
     constructor(props) {
@@ -22,7 +24,10 @@ class BooksApp extends React.Component {
     render() {
         return(
             <div>
-                This is the app home page!
+                {this.state.showSearchPage ?
+                    <SearchPage toggler={this.toggleScreen}/> :
+                    <HomeDisplay toggler={this.toggleScreen}/>
+                }
             </div>
         )
     }
