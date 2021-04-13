@@ -17,6 +17,8 @@ const TileEachBook = (props) => {
     //     else
     //         props.bookToggler(event.target.value, props.eachBook, props.def)
     // }
+    if(!props.eachBook.hasOwnProperty('authors'))
+        console.log("Found no authors for ", props.eachBook)
     return(
         <div className="book">
             <div className= "book-top">
@@ -33,7 +35,8 @@ const TileEachBook = (props) => {
             </div>
             <div className="book-title">{props.eachBook.title}</div>
             {
-                (props.eachBook.authors.length === 1) ? <div className="book-authors">{props.eachBook.authors}</div> :
+
+                (props.eachBook.hasOwnProperty('authors') && props.eachBook.authors.length === 1) ? <div className="book-authors">{props.eachBook.authors}</div> :
                     <div className="book-authors">2 or more</div>
 
             }

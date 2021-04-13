@@ -4,7 +4,6 @@ import './App.css'
 import CurrentlyReading from "./CurrentlyReading";
 import WantToRead from "./WantToRead";
 import Read from "./Read";
-import {get} from "./BooksAPI";
 
 export default class HomeDisplay extends React.Component {
     constructor(props) {
