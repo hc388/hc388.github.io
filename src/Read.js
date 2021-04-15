@@ -13,7 +13,7 @@ const Read = (props) => {
             <div className="bookshelf-books">
                 <ol className="books-grid">
                     {   props.booksList.length === 0 ? <DisplayNone /> :
-                        props.booksList.map( obj => <li key={obj.img}><TileEachBook eachBook = {obj} deleter = {props.deleter} def = {"read"} bookToggler = {props.bookToggler}/></li>)}
+                        props.booksList.map( obj => <li key={obj.id}><TileEachBook eachBook = {obj} deleter = {props.deleter} def = {"read"} bookToggler = {props.bookToggler} storedBooks = {props.storedBooks}/></li>)}
                 </ol>
             </div>
 

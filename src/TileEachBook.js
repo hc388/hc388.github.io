@@ -1,30 +1,23 @@
 import React from 'react'
 
 const TileEachBook = (props) => {
-    console.log("TIle received", props.eachBook)
-    //
-    // const addBook = (event) => {
-    //     props.adding(event.target.value, props.eachBook, props.def)
-    // }
-
-    // const manageBook = (event) => {
-    //     if (props.def === "none") {
-    //         console.log("Going straight to addBook")
-    //         props.bookToggler(event.target.value, props.eachBook)
-    //     }
-    //     else if(event.target.value === "none")
-    //         props.deleter(props.def, props.eachBook)
-    //     else
-    //         props.bookToggler(event.target.value, props.eachBook, props.def)
-    // }
-    if(!props.eachBook.hasOwnProperty('authors'))
-        console.log("Found no authors for ", props.eachBook)
+    const checkStatus = (obj) => {
+        if(props.def !== 'unknown')
+            return props.def
+        for(let eachBook of props.storedBooks){
+            if(eachBook.id === obj.id) {
+                return eachBook.shelf
+            }
+        }
+        return 'none'
+    }
+    let status = checkStatus(props.eachBook)
     return(
         <div className="book">
             <div className= "book-top">
                 <div className="book-cover"  style = {{ width: 128, height: 193, backgroundImage: `url(${props.eachBook.imageLinks.thumbnail})`}}></div>
                 <div className="book-shelf-changer">
-                    <select defaultValue={props.def} >
+                    <select defaultValue={status} >
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>

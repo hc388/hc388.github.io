@@ -1,5 +1,4 @@
 import React from 'react'
-import * as BooksAPI from './BooksAPI'
 import './App.css'
 import CurrentlyReading from "./CurrentlyReading";
 import WantToRead from "./WantToRead";
@@ -15,27 +14,14 @@ export default class HomeDisplay extends React.Component {
 
     books = []
 
-    componentDidMount() {
-        BooksAPI.getAll().then(getBooks => {
-            console.log('returned value', getBooks)
-            this.setState({booknames: getBooks})
-            console.log("Mount says", this.state.booknames)
-
-        })
-
-
-    }
-
     sortedBookObj = {
         'currentlyReading': [],
         'wantToRead': [],
         'read': []
     }
     sortBooks = () => {
-        console.log("Sorter knocked!", this.state.booknames)
-        for (let obj of this.state.booknames) {
+        for (let obj of this.props.storedBooks) {
             if (obj.shelf === "currentlyReading") {
-                console.log("Currently Reading is triggered")
                 this.sortedBookObj['currentlyReading'].push(obj)
             } else if (obj.shelf === 'wantToRead')
                 this.sortedBookObj['wantToRead'].push(obj)
@@ -45,16 +31,15 @@ export default class HomeDisplay extends React.Component {
     }
 
     render() {
-        console.log("render is kicked")
         this.sortBooks()
         return (
             <div>
                 <div className="list-books-title">
                     <h1>MyReads</h1>
                 </div>
-                <CurrentlyReading booksList={this.sortedBookObj["currentlyReading"]}/>
-                <WantToRead booksList={this.sortedBookObj['wantToRead']} />
-                <Read booksList={this.sortedBookObj['read']} />
+                <CurrentlyReading booksList={this.sortedBookObj["currentlyReading"]} storedBooks = {this.state.booksList}/>
+                <WantToRead booksList={this.sortedBookObj['wantToRead']} storedBooks = {this.state.booksList}/>
+                <Read booksList={this.sortedBookObj['read']} storedBooks = {this.state.booksList}/>
 
                 <div className="open-search">
                     <button onClick={this.props.toggler}>Add a book</button>

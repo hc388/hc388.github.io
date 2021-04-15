@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react'
 import SearchPage from "./SearchPage";
 import HomeDisplay from "./HomeDisplay";
+import * as BooksAPI from './BooksAPI'
 
 class BooksApp extends React.Component {
     constructor(props) {
@@ -10,12 +10,14 @@ class BooksApp extends React.Component {
         this.state = {
             showSearchPage: false,
             searching: false,
-            booksList: {
-                "currentlyReading": [],
-                "wantToRead": [],
-                "read": []
-            }
+            booksList : {}
+
         }
+    }
+    componentDidMount() {
+        BooksAPI.getAll().then(attr => {
+            this.setState({booksList: attr})
+    })
     }
 
     toggleScreen = () => {
@@ -25,8 +27,8 @@ class BooksApp extends React.Component {
         return(
             <div>
                 {this.state.showSearchPage ?
-                    <SearchPage toggler={this.toggleScreen}/> :
-                    <HomeDisplay toggler={this.toggleScreen}/>
+                    <SearchPage toggler={this.toggleScreen} storedBooks = {this.state.booksList}/> :
+                    (Object.keys(this.state.booksList).length !== 0) && <HomeDisplay toggler={this.toggleScreen} storedBooks = {this.state.booksList}/>
                 }
             </div>
         )

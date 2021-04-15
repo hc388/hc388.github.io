@@ -28,7 +28,7 @@ export default class SearchPage extends React.Component {
             <div className="app">
                 <SearchBar toggler={this.props.toggler} updater={this.updateQuery}/>
                 <h2>This is the search page!</h2>
-                <SearchResults query = {this.state.query} />
+                <SearchResults query = {this.state.query} storedBooks = {this.props.storedBooks}/>
             </div>
         )
     }

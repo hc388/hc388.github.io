@@ -1,36 +1,28 @@
-import React from 'react';
+import React from 'react'
 import './App.css'
 import TileEachBook from "./TileEachBook";
 
-const DisplayResult = (props) => {
-    const dispBookObj = props.bookObj
-    let finalBookObj = []
-    const booksList = props.booksList
-    const tempList = []
-    let status = "none";
+const conveToArray = (obj) => {
+    let array = []
+    for (let eachobj in obj)
+        array.push(obj[eachobj])
+    return array
+}
 
-    const check_if_exists = (obj) => {
-        // for (const item in booksList){
-        //     let temp = booksList[item].filter( second => (second.title === obj.title) && (second.author === obj.author))
-        //     if (temp.length !==0)
-        //         status = item
-        // }
-        return true
-    }
-    return(
+const DisplayResults = (props) => {
+    let bookslist = []
+    bookslist = props.bookObj
+    let array = conveToArray(bookslist)
+    return (
         <div className="list-books">
-            {console.log("List of books", dispBookObj)}
-
             <div className="list-books-content">
                 <div className="bookshelf">
-                    <div className= "bookshelf-books">
-                        <ol className= "books-grid">
+                    <div className="bookshelf-books">
+                        <ol className="books-grid">
                             {
-                                dispBookObj.map( obj => {
-                                  if(check_if_exists(obj))
-                                    return <li key={obj.img}><TileEachBook eachBook={obj} deleter={props.deleter} bookToggler = {props.bookToggler} def={status}/></li>
-
-                                })
+                                array.map(obj =>
+                                    <li key={obj.id}><TileEachBook eachBook={obj} storedBooks={props.storedBooks} def={'unknown'}/> </li>
+                                )
                             }
                         </ol>
                     </div>
@@ -39,6 +31,6 @@ const DisplayResult = (props) => {
         </div>
 
     )
-
 }
-export default DisplayResult
+
+export default DisplayResults
