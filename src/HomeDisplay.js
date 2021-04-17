@@ -37,9 +37,9 @@ export default class HomeDisplay extends React.Component {
                 <div className="list-books-title">
                     <h1>MyReads</h1>
                 </div>
-                <CurrentlyReading booksList={this.sortedBookObj["currentlyReading"]} storedBooks = {this.state.booksList}/>
-                <WantToRead booksList={this.sortedBookObj['wantToRead']} storedBooks = {this.state.booksList}/>
-                <Read booksList={this.sortedBookObj['read']} storedBooks = {this.state.booksList}/>
+                <CurrentlyReading booksList={this.sortedBookObj["currentlyReading"]} storedBooks = {this.state.booksList} refresher = {this.props.refresher}/>
+                <WantToRead booksList={this.sortedBookObj['wantToRead']} storedBooks = {this.state.booksList} refresher = {this.props.refresher}/>
+                <Read booksList={this.sortedBookObj['read']} storedBooks = {this.state.booksList} refresher = {this.props.refresher}/>
 
                 <div className="open-search">
                     <button onClick={this.props.toggler}>Add a book</button>

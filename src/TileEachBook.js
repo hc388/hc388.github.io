@@ -1,15 +1,17 @@
 import React from 'react'
+import * as BooksAPI from './BooksAPI'
 
 const TileEachBook = (props) => {
     const checkStatus = (obj) => {
         if(props.def !== 'unknown')
             return props.def
-        for(let eachBook of props.storedBooks){
-            if(eachBook.id === obj.id) {
-                return eachBook.shelf
-            }
-        }
         return 'none'
+        }
+    const callStatusChange = value => props.refresher(props.eachBook, value)
+    const changeStatus = (event) => {
+        console.log("You selected the option", event.target.value, "for the book ", props.eachBook.title)
+        event.preventDefault()
+        callStatusChange(event.target.value)
     }
     let status = checkStatus(props.eachBook)
     return(
@@ -17,7 +19,7 @@ const TileEachBook = (props) => {
             <div className= "book-top">
                 <div className="book-cover"  style = {{ width: 128, height: 193, backgroundImage: `url(${props.eachBook.imageLinks.thumbnail})`}}></div>
                 <div className="book-shelf-changer">
-                    <select defaultValue={status} >
+                    <select defaultValue={status} onChange={changeStatus}>
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>

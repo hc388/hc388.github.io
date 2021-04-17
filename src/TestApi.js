@@ -43,7 +43,7 @@ class TestApi extends React.Component {
 
                     this.state.booknames !== "Unknown" &&
                     <DisplayResults bookObj={this.state.booknames} toggler={this.props.toggler}
-                                    storedBooks={this.props.storedBooks}/>
+                                    storedBooks={this.props.storedBooks} refresher={this.props.refresher}/>
                 }
                 </ol>
             </div>
