@@ -7,19 +7,15 @@ class SearchResults extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            query: props.query,
-            booknames: []
+            query: this.props.query,
         }
     }
 
-    updateBooks = props => {
-        this.setState({booknames: this.props.booknames})
-    }
 
     render() {
         return (
             <div>
-                <TestApi name={this.props.query} storedBooks={this.props.storedBooks} refresher={this.props.refresher}/>
+                {this.props.query !== '' && <TestApi name={this.props.query} storedBooks={this.props.storedBooks} refresher={this.props.refresher}/> }
             </div>
         )
     }

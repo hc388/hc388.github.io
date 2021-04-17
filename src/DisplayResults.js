@@ -10,13 +10,12 @@ const conveToArray = (obj) => {
 }
 
 class DisplayResults extends React.Component {
-    checkStatus = (obj, array) => {
+    checkStatus = (obj) => {
         let tempArray = this.props.storedBooks
         let status = 'unknown'
         for (let storedBookStatus in tempArray) {
             for (let book in tempArray[storedBookStatus]) {
                 if (tempArray[storedBookStatus][book].id === obj.id) {
-                    console.log("Found an existent book", tempArray[storedBookStatus][book].title)
                     status = tempArray[storedBookStatus][book].shelf
                 }
             }
