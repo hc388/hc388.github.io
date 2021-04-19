@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import CurrentlyReading from "./CurrentlyReading";
 import WantToRead from "./WantToRead";
+import { Link } from 'react-router-dom'
 import Read from "./Read";
 
 export default class HomeDisplay extends React.Component {
@@ -42,7 +43,13 @@ export default class HomeDisplay extends React.Component {
                 <Read booksList={this.sortedBookObj['read']} storedBooks = {this.state.booksList} refresher = {this.props.refresher}/>
 
                 <div className="open-search">
-                    <button onClick={this.props.toggler}>Add a book</button>
+                    <Link
+                        to='/search'
+                        className='add-contact'
+                        onClick={this.props.toggler}
+                    >
+                        <button className='add-contact'>
+                        Search Books</button></Link>
                 </div>
             </div>
         )

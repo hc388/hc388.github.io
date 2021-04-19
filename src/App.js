@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react'
+import {Route, Switch} from 'react-router-dom'
 import SearchPage from "./SearchPage";
 import HomeDisplay from "./HomeDisplay";
 import * as BooksAPI from './BooksAPI'
@@ -8,7 +9,7 @@ class BooksApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showSearchPage: false,
+            search: false,
             searching: false,
             booksList: {}
 
@@ -36,20 +37,24 @@ class BooksApp extends React.Component {
         })
     }
     toggleScreen = () => {
-        this.setState(prevState => ({showSearchPage: !prevState.showSearchPage}))
+        this.setState(prevState => ({search: !prevState.search}))
     }
 
     render() {
 
         return (
             <div>
-                {this.state.showSearchPage ?
-                    <SearchPage toggler={this.toggleScreen} storedBooks={this.state.booksList}
-                                refresher={this.refreshScreen}/> :
-                    (Object.keys(this.state.booksList).length !== 0) &&
-                    <HomeDisplay toggler={this.toggleScreen} storedBooks={this.state.booksList}
-                                 refresher={this.refreshScreen}/>
-                }
+
+                {this.state.search ?
+                    <Route  path='/search' render={() => (
+                        <SearchPage toggler={this.toggleScreen} storedBooks={this.state.booksList}
+                                    refresher={this.refreshScreen}/> )} /> :
+                    <Route exact path='/' render={() => (
+                        (Object.keys(this.state.booksList).length !== 0) &&
+                        <HomeDisplay toggler={this.toggleScreen} storedBooks={this.state.booksList}
+                                     refresher={this.refreshScreen}/> )} />
+                    }
+
             </div>
         )
     }
