@@ -3,6 +3,7 @@ import React from 'react'
 import './App.css'
 import Searcher from "./Searcher";
 import SearchResults from "./SearchResults";
+import TestApi from "./TestApi";
 
 
 export default class SearchPage extends React.Component {
@@ -51,8 +52,7 @@ export default class SearchPage extends React.Component {
             <div className="app">
                 <Searcher toggler={this.props.toggler} updater={this.updateQuery} deleter = {this.deleter}/>
                 <h2>This is the search page!</h2>
-                <SearchResults query={this.state.query} storedBooks={this.sortedBookObj}
-                               refresher={this.props.refresher}/>
+                {this.state.query !== '' && <TestApi name={this.state.query} storedBooks={this.props.storedBooks} refresher={this.props.refresher}/> }
             </div>
         )
     }
