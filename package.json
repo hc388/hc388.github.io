@@ -1,4 +1,5 @@
 {
+  "name": "BookReadsApp",
   "homepage": "https://hc388.github.io/BookReadsApp",
   "dependencies": {
     "prop-types": "^15.5.8",
