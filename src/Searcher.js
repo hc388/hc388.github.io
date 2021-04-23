@@ -10,7 +10,7 @@ class Searcher extends React.Component{
     }
     handleChange = event => {
         let value = event.target.value
-        if(value === '')
+        if(value=== '')
             this.props.deleter()
         this.setState({query : value})
         this.props.updater(value)
@@ -42,7 +42,7 @@ class Searcher extends React.Component{
                             />
                         </form>
                     </div>
-                    <button onClick = {this.props.reset}>Reset</button>
+                    <button onClick={this.props.reset}>Reset</button>
                 </div>
             </div>
         )

@@ -22,9 +22,9 @@ export default class HomeDisplay extends React.Component {
     }
     sortBooks = () => {
         for (let obj of this.props.storedBooks) {
-            if (obj.shelf === "currentlyReading") {
+            if (obj.shelf==="currentlyReading") {
                 this.sortedBookObj['currentlyReading'].push(obj)
-            } else if (obj.shelf === 'wantToRead')
+            } else if (obj.shelf==='wantToRead')
                 this.sortedBookObj['wantToRead'].push(obj)
             else
                 this.sortedBookObj['read'].push(obj)
@@ -38,9 +38,9 @@ export default class HomeDisplay extends React.Component {
                 <div className="list-books-title">
                     <h1>MyReads</h1>
                 </div>
-                <CurrentlyReading booksList={this.sortedBookObj["currentlyReading"]} storedBooks = {this.state.booksList} refresher = {this.props.refresher}/>
-                <WantToRead booksList={this.sortedBookObj['wantToRead']} storedBooks = {this.state.booksList} refresher = {this.props.refresher}/>
-                <Read booksList={this.sortedBookObj['read']} storedBooks = {this.state.booksList} refresher = {this.props.refresher}/>
+                <CurrentlyReading booksList={this.sortedBookObj["currentlyReading"]} storedBooks={this.state.booksList} refresher={this.props.refresher}/>
+                <WantToRead booksList={this.sortedBookObj['wantToRead']} storedBooks={this.state.booksList} refresher={this.props.refresher}/>
+                <Read booksList={this.sortedBookObj['read']} storedBooks={this.state.booksList} refresher={this.props.refresher}/>
 
                 <div className="open-search">
                     <Link

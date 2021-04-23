@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react'
-import {Route, Switch} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import SearchPage from "./SearchPage";
 import HomeDisplay from "./HomeDisplay";
 import * as BooksAPI from './BooksAPI'
